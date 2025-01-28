@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+VN:wght@100..400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+VN:wght@100..400&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+
+    <title>Creative Portfolio</title>
+    <style>
+        body {
+            /* background-color: #f0f8ff; */
+            color: #333;
+            /* background-repeat: no-repeat; */
+            background: url('creat.jpg');
+            background-size: cover;
+            height: 500px;
+            display: flex;
+            font-family: "Playwrite VN", serif;
+            
+
+        }
+        h1 {
+            text-align: center;
+            color:black;
+            font-size: 55px;
+            font-family:"Playwrite VN", serif; 
+        }
+        .portfolio-container {
+            font-family: "Roboto Slab", serif;
+            width: 750px;
+            margin: 20px auto;
+            background: transparent;
+            border: 1px solid black;
+            padding: 20px;
+            /* background-image: url('creat.jpg'); */
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            height: 515px;
+        }
+        p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        strong {
+            color: black;
+        }
+        /* .bg {
+
+            background-image: url("creat.jpg");
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            } */
+  
+    </style>
+</head>
+<body>
+    <img class="bg">
+    <h1>Creative Portfolio</h1>
+    <div class="portfolio-container">
+        <p><strong>Name:</strong> <span id="name"></span></p><br>
+        <p><strong>Email:</strong> <span id="email"></span></p><br>
+        <p><strong>Phone:</strong> <span id="phone"></span></p><br>     <p><strong>Skills:</strong> <span id="skills"></span></p><br>
+        <p><strong>Experience:</strong> <span id="experience"></span></p><br>
+        <p><strong>Education:</strong> <span id="education"></span></p><br>
+        <p><strong>Projects:</strong> <span id="projects"></span></p><br>
+        <p><strong>Achievements:</strong> <span id="achievements"></span></p>
+    </div>
+
+    <script>
+        
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+
+
+        fetch(`/fetch-creative?id=${id}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data) {
+                    document.getElementById('name').textContent = data.name;
+                    document.getElementById('email').textContent = data.email;
+                    document.getElementById('phone').textContent = data.phone;
+                    document.getElementById('skills').textContent = data.skills;
+                    document.getElementById('experience').textContent = data.experience;
+                    document.getElementById('education').textContent = data.education;
+                    document.getElementById('projects').textContent = data.projects;
+                    document.getElementById('achievements').textContent = data.achievements;
+                } else {
+                    document.body.innerHTML = `<p>Error: Data not found.</p>`;
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+                document.body.innerHTML = `<p>Error loading data.</p>`;
+            });
+    </script>
+</body>
+</html>
