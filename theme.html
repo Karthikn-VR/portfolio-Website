@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+            background-image: url('themes.jpg');
+            background-size: cover; 
+            background-position: center;
+            background-attachment: fixed;
+            
+        }
+        
+
+        
+
+        h1 {
+            margin: 20px 0;
+            font-size: 2em;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            width: 100%;
+            max-width: 1000px;
+            padding: 20px;
+        }
+
+        .option {
+            text-decoration: none;
+            color: black;
+            text-align: center;
+        }
+
+        .option img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .option img:hover {
+            transform: scale(1.2);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .option p {
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    
+    
+ <h1 style="color: aliceblue;">Choose Theme</h1><br><br><br>
+    <div class="container">
+        <a id="professional-link" class="option">
+            <img src="imgp.webp" alt="Professional Theme"><br><br><br>
+            <p style="color: aliceblue;">Professional</p>
+        </a>
+        <a id="creative-link" class="option">
+            <img src="imgc.webp" alt="Creative Theme"><br><br><br>
+            <p style="color: aliceblue;">Creativity</p>
+        </a>
+    </div>
+
+    <script>
+        
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+
+        
+        if (id) {
+            document.getElementById('professional-link').href = `final1.html?id=${id}`;
+            document.getElementById('creative-link').href = `final2.html?id=${id}`;
+        } else {
+            alert('No ID found. Please ensure you have submitted the form.');
+        }
+    </script>
+</body>
+</html>
